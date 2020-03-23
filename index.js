@@ -301,8 +301,13 @@ function getModelYears(arr) {
  * For example, if getCarInfoById is invoked with the inventory and the number 1,
  * it will return `This is a Lincoln Navigator`.
 */
-function getCarInfoById(/* code here */) {
+function getCarInfoById(inventory, id) {
   /* code here */
+  for (let i = 0; i < inventory.length; i++) {
+    if (inventory[i].id === id) {
+      return 'This is a ' + inventory[i].car_make + inventory[i].car_model;
+    }
+  }
 }
 
 /**
@@ -319,8 +324,15 @@ function getCarInfoById(/* code here */) {
  * with a `car_year` which is at most the given desired max year,
  * in the same order as they appear in the original inventory.
 */
-function getOlderCars(/* code here */) {
+function getOlderCars(inventory, maxYear) {
   /* code here */
+  const desiredCars = [];
+  for (let i = 0; i < inventory.length; i++) {
+    if (inventory[i].car_year <= maxYear) {
+      desiredCars.push(inventory[i]);
+    }
+  }
+  return desiredCars;
 }
 
 /**
@@ -336,8 +348,18 @@ function getOlderCars(/* code here */) {
  * made by either `Audi` or `Mercedes-Benz` or `Volkswagen` or `BMW`,
  * in the same order as they appear in the original inventory.
 */
-function getGermanCars(/* code here */) {
+function getGermanCars(inventory) {
   /* code here */
+  const deutschCar = [];
+
+  for (let i = 0; i < inventory.length; i++) {
+    const germanInventory = inventory[i].car_make;
+
+    if (germanInventory === "Audi" || germanInventory === "Mercedes-Benz"  || germanInventory === "Volkswagen" || germanInventory === "BMW") {
+      deutschCar.push(inventory[i]);
+    }
+  }
+  return deutschCar;
 }
 
 /**
@@ -353,8 +375,15 @@ function getGermanCars(/* code here */) {
  *         (1) causes the odometer in the object to be increased by the distance,
  *         (2) returns the updated value of the `odometer`.
 */
-function carMaker(/* code here */) {
+function carMaker(odoAlgo) {
   /* code here */
+  const miles = {
+    odometer: odoAlgo,
+    drive: function(distance) {
+      return this.odometer += distance;
+    }
+  }
+  return miles;
 }
 
 /// ////// END OF CHALLENGE /////////
